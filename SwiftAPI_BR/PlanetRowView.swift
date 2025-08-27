@@ -11,7 +11,7 @@ struct PlanetRowView: View {
     let planet : Planets
     
     // Num variable to select a random photo of a planet
-    let num = Int.random(in: 1...5)
+    let num = Int.random(in: 1...8)
     
     var body: some View {
         

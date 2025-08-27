@@ -8,12 +8,14 @@
 import Foundation
 
 enum APIError: LocalizedError {
+    // Error cases
     case invalidURL
     case noInternet
     case serverError(statusCode: Int)
     case decodingError
     case unknownError
 
+    // Error descriptions in order to display visual message describing problem
     var errorDescription: String? {
         switch self {
         case .invalidURL:

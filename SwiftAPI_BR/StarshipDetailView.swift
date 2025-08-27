@@ -14,6 +14,8 @@ struct StarshipDetailView: View {
     let num = Int.random(in: 1...13)
     
     var body: some View {
+        
+        // ScrollView in case content exceeds view space
         ScrollView {
             VStack(spacing: 15) {
                 Image("Ship\(num)")
@@ -21,7 +23,7 @@ struct StarshipDetailView: View {
                     .scaledToFit()
                     .frame(width: 200)
                 
-                // Text to show planet's name and description
+                // Text to show starship's name and description
                 Text(starship.name)
                     .font(.title)
                     .fontWeight(.bold)
@@ -44,7 +46,7 @@ struct StarshipDetailView: View {
                 
                 Text("Length (in meters): ").fontWeight(.bold) + Text(starship.length)
                 
-                Text("Cargo capacity (in metric tons / ton): ").fontWeight(.bold) + Text(starship.cargo_capacity)
+                Text("Cargo capacity: ").fontWeight(.bold) + Text(starship.cargo_capacity)
                 
                 Text("Consumables: ").fontWeight(.bold) + Text(starship.consumables)
                 

@@ -14,18 +14,29 @@ struct ContentView: View {
     @State var starshipViewModel = StarshipAPI()
     
     var body: some View {
-        // TabView to select between Film, Planet, or Starship View
         TabView {
+            
+            // NavigationStack for films
             NavigationStack {
-                // List to display the films
-                List(filmViewModel.arrFilms) { item in
-                    NavigationLink {
-                        FilmDetailView(film: item)
-                    } label: {
-                        FilmRowView(film: item)
+                
+                // If error occurs, display message and allow user to retry API connection
+                if let errorMessage = filmViewModel.errorMessage {
+                    ErrorView(message: errorMessage) {
+                        Task { await filmViewModel.getFilms() }
+                    }
+                } else {
+                    // Display items in a list
+                    List(filmViewModel.arrFilms) { item in
+                        NavigationLink {
+                            FilmDetailView(film: item)
+                        } label: {
+                            FilmRowView(film: item)
+                        }
                     }
                 }
             }
+            
+            // Modifiers to improve list format
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
             .tabItem {
@@ -33,16 +44,27 @@ struct ContentView: View {
                 Text("Films")
             }
             
+            // NavigationStack for planets
             NavigationStack {
-                // List to display the planets
-                List(planetViewModel.arrPlanets) { item in
-                    NavigationLink {
-                        PlanetDetailView(planet: item)
-                    } label: {
-                        PlanetRowView(planet: item)
+                
+                // If error occurs, display message and allow user to retry API connection
+                if let errorMessage = planetViewModel.errorMessage {
+                    ErrorView(message: errorMessage) {
+                        Task { await planetViewModel.getPlanets() }
+                    }
+                } else {
+                    // Display items in a list
+                    List(planetViewModel.arrPlanets) { item in
+                        NavigationLink {
+                            PlanetDetailView(planet: item)
+                        } label: {
+                            PlanetRowView(planet: item)
+                        }
                     }
                 }
             }
+            
+            // Modifiers to improve list format
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
             .tabItem {
@@ -50,16 +72,27 @@ struct ContentView: View {
                 Text("Planets")
             }
             
+            // NavigationStack for starships
             NavigationStack {
-                // List to display the starships
-                List(starshipViewModel.arrStarships) { item in
-                    NavigationLink {
-                        StarshipDetailView(starship: item)
-                    } label: {
-                        StarshipRowView(starship: item)
+                
+                // If error occurs, display message and allow user to retry API connection
+                if let errorMessage = starshipViewModel.errorMessage {
+                    ErrorView(message: errorMessage) {
+                        Task { await starshipViewModel.getStarships() }
+                    }
+                } else {
+                    // Display items in a list
+                    List(starshipViewModel.arrStarships) { item in
+                        NavigationLink {
+                            StarshipDetailView(starship: item)
+                        } label: {
+                            StarshipRowView(starship: item)
+                        }
                     }
                 }
             }
+            
+            // Modifiers to improve list format
             .listStyle(.plain)
             .scrollContentBackground(.hidden)
             .tabItem {
