@@ -26,6 +26,8 @@ struct ContentView: View {
                     }
                 }
             }
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
             .tabItem {
                 Image(systemName: "movieclapper")
                 Text("Films")
@@ -41,6 +43,8 @@ struct ContentView: View {
                     }
                 }
             }
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
             .tabItem {
                 Image(systemName: "globe.americas.fill")
                 Text("Planets")
@@ -50,12 +54,14 @@ struct ContentView: View {
                 // List to display the starships
                 List(starshipViewModel.arrStarships) { item in
                     NavigationLink {
-                        StarshipDetailView()
+                        StarshipDetailView(starship: item)
                     } label: {
                         StarshipRowView(starship: item)
                     }
                 }
             }
+            .listStyle(.plain)
+            .scrollContentBackground(.hidden)
             .tabItem {
                 Image(systemName: "airplane")
                 Text("Starships")

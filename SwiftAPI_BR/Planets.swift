@@ -41,6 +41,7 @@ final class PlanetAPI: Sendable {
     
     // Function to get films from the Star Wars SWAPI
     func getPlanets() async {
+        
         do {
             // Create a URL object
             guard let url = URL(string: "https://swapi.info/api/planets") else {

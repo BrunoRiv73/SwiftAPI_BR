@@ -17,15 +17,15 @@ enum APIError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidURL:
-            return "La dirección del servidor no es válida."
+            return "The server address is not valid."
         case .noInternet:
-            return "No hay conexión a Internet. Intenta de nuevo."
+            return "No internet connection available. Please try again later"
         case .serverError(let code):
-            return "Error del servidor (\(code)). Intenta más tarde."
+            return "Server error (\(code)). Please try again later."
         case .decodingError:
-            return "Hubo un problema al procesar los datos."
+            return "An error occurred while processing the data."
         case .unknownError:
-            return "Ocurrió un error inesperado."
+            return "An unexpected error occurred."
         }
     }
 }
