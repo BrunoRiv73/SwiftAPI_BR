@@ -43,10 +43,15 @@ struct Starships: Identifiable, Codable, Hashable {
 @Observable
 final class StarshipAPI: Sendable {
     var arrStarships = [Starships]()
-    var errorMessage: String? = nil
+    var errorMessage: String? = nil    
+    var isLoading: Bool = false
     
     // Function to get films from the Star Wars SWAPI
     func getStarships() async {
+        // Set loading state to true while the request is in progress
+        isLoading = true
+        defer { isLoading = false }  // Ensure loading is reset to false when finished
+        
         do {
             // Create a URL object
             guard let url = URL(string: "https://swapi.info/api/starships") else {

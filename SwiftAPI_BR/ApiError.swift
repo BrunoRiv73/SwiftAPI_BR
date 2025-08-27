@@ -21,7 +21,7 @@ enum APIError: LocalizedError {
         case .invalidURL:
             return "The server address is not valid."
         case .noInternet:
-            return "No internet connection available. Please try again later"
+            return "No internet connection available. Please try again later."
         case .serverError(let code):
             return "Server error (\(code)). Please try again later."
         case .decodingError:

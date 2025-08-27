@@ -32,9 +32,14 @@ struct Films: Identifiable, Codable, Hashable {
 final class FilmAPI: Sendable {
     var arrFilms = [Films]()
     var errorMessage: String? = nil
-    
+    var isLoading: Bool = false
+
     // Function to get films from the Star Wars SWAPI
     func getFilms() async {
+        // Set loading state to true while the request is in progress
+        isLoading = true
+        defer { isLoading = false }  // Ensure loading is reset to false when finished
+        
         do {
             // Create a URL object
             guard let url = URL(string: "https://swapi.info/api/films") else {

@@ -16,14 +16,20 @@ struct ContentView: View {
     var body: some View {
         TabView {
             
-            // NavigationStack for films
+            // MARK: NavigationStack for films
             NavigationStack {
                 
+                // Displays loading screen
+                if filmViewModel.isLoading {
+                    ProgressView("Loading Films...")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
                 // If error occurs, display message and allow user to retry API connection
-                if let errorMessage = filmViewModel.errorMessage {
+                } else if let errorMessage = filmViewModel.errorMessage {
                     ErrorView(message: errorMessage) {
                         Task { await filmViewModel.getFilms() }
                     }
+                    
                 } else {
                     // Display items in a list
                     List(filmViewModel.arrFilms) { item in
@@ -44,14 +50,19 @@ struct ContentView: View {
                 Text("Films")
             }
             
-            // NavigationStack for planets
+            // MARK: NavigationStack for planets
             NavigationStack {
+                // Displays loading screen
+                if planetViewModel.isLoading {
+                    ProgressView("Loading Planets...")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
                 // If error occurs, display message and allow user to retry API connection
-                if let errorMessage = planetViewModel.errorMessage {
+                } else if let errorMessage = planetViewModel.errorMessage {
                     ErrorView(message: errorMessage) {
                         Task { await planetViewModel.getPlanets() }
                     }
+                    
                 } else {
                     // Display items in a list
                     List(planetViewModel.arrPlanets) { item in
@@ -72,14 +83,20 @@ struct ContentView: View {
                 Text("Planets")
             }
             
-            // NavigationStack for starships
+            // MARK: NavigationStack for starships
             NavigationStack {
                 
+                // Displays loading screen
+                if starshipViewModel.isLoading {
+                    ProgressView("Loading Starships...")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                
                 // If error occurs, display message and allow user to retry API connection
-                if let errorMessage = starshipViewModel.errorMessage {
+                } else if let errorMessage = starshipViewModel.errorMessage {
                     ErrorView(message: errorMessage) {
                         Task { await starshipViewModel.getStarships() }
                     }
+                    
                 } else {
                     // Display items in a list
                     List(starshipViewModel.arrStarships) { item in

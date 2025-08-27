@@ -14,17 +14,14 @@ struct FilmDetailView: View {
         
         // ScrollView in case content exceeds view space
         ScrollView {
-            
-            // VStack to arrange items in a column
             VStack(spacing: 15) {
                 
-                // Movie episode image
                 Image("Episode\(film.episode_id)")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 200)
                 
-                // Text to show film name
+                // Text to show film title and general description
                 Text(film.title)
                     .font(.title)
                     .fontWeight(.bold)
